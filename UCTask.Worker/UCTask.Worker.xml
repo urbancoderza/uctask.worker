@@ -29,22 +29,6 @@
             Indicates that the worker is in a 'Stopping' state. That is, the worker is busy stopping.
             </summary>
         </member>
-        <member name="T:UCTask.Worker.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:UCTask.Worker.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:UCTask.Worker.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
         <member name="T:UCTask.Worker.WorkerBase">
             <summary>
             An abstract base class that provides basic thread, start and stop operations.
