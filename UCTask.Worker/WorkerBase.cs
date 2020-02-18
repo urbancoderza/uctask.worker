@@ -3,44 +3,55 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace UCComs.Worker
+namespace UCTask.Worker
 {
-	public abstract class WorkerBase
+	/// <summary>
+	/// An abstract base class that provides basic thread, start and stop operations.
+	/// </summary>
+	public abstract partial class WorkerBase : IDisposable
 	{
 		private readonly object _dependentLocker = new object();
 		private readonly List<WorkerBase> _dependentWorkers = new List<WorkerBase>();
+		private Task _workerTask;
+		private readonly CancellationTokenSource _tokenSource = new CancellationTokenSource();
+		private readonly object _startStopLocker = new object();
 
-		protected readonly object StartStopLocker = new object();
-		protected readonly CancellationTokenSource TokenSource = new CancellationTokenSource();
-		protected Task WorkerTask;
+		/// <summary>
+		/// Represents the state of the worker. <see cref="WorkerState"/>
+		/// </summary>
+		public WorkerState WorkerState { get; private set; } = WorkerState.Stopped;
 
-		protected WorkerState WorkerState { get; private set; } = WorkerState.Stopped;
-
+		/// <summary>
+		/// Starts the worker.
+		/// </summary>
 		protected void StartWorker()
 		{
 			if (WorkerState != WorkerState.Stopped)
 				return;
-			lock (StartStopLocker)
+			lock (_startStopLocker)
 			{
 				if (WorkerState != WorkerState.Stopped)
 					return;
 
-				WorkerTask = Task.Factory.StartNew(() => Run(TokenSource.Token), TokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+				_workerTask = Task.Factory.StartNew(() => Run(_tokenSource.Token), _tokenSource.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
 			}
 		}
 
+		/// <summary>
+		/// Stops the worker.
+		/// </summary>
 		protected void StopWorker()
 		{
 			if (WorkerState != WorkerState.Started)
 				return;
-			lock (StartStopLocker)
+			lock (_startStopLocker)
 			{
 				if (WorkerState != WorkerState.Started)
 					return;
 
 				WorkerState = WorkerState.Stopping;
-				if (!WorkerTask.Wait(20, TokenSource.Token))
-					TokenSource.Cancel(true);
+				if (!_workerTask.Wait(20, _tokenSource.Token))
+					_tokenSource.Cancel(true);
 			}
 		}
 
@@ -76,10 +87,26 @@ namespace UCComs.Worker
 			}
 		}
 
+		/// <summary>
+		/// Implementing classes can override <see cref="OnRunStarting"/> which is called at the beginning of a start operation. <see cref="StartWorker"/>
+		/// </summary>
 		protected virtual void OnRunStarting() { }
+
+		/// <summary>
+		/// When overrided in a derived class, this method is executed with each cycle of the worker.
+		/// </summary>
+		/// <param name="cancellationToken"></param>
 		protected virtual void Cycle(CancellationToken cancellationToken) { }
+
+		/// <summary>
+		/// Implementing classes can override <see cref="OnRunEnding"/> which is called at the beginning of a stop operation. <see cref="StopWorker"/>
+		/// </summary>
 		protected virtual void OnRunEnding() { }
 
+		/// <summary>
+		/// Adds a dependent worker which is subject to the start and stop operations of this worker.
+		/// </summary>
+		/// <param name="dependent">The worker which is to be added.</param>
 		protected void AddDependent(WorkerBase dependent)
 		{
 			if (dependent == null)
@@ -91,13 +118,17 @@ namespace UCComs.Worker
 			}
 		}
 
+		/// <summary>
+		/// Removes a dependent worker.
+		/// </summary>
+		/// <param name="dependent">The worker which is not to be removed.</param>
 		protected void RemoveDependent(WorkerBase dependent)
 		{
 			if (dependent == null)
 				throw new ArgumentNullException(nameof(dependent));
 
 			lock (_dependentLocker)
-			{				
+			{
 				_dependentWorkers.Remove(dependent);
 			}
 		}

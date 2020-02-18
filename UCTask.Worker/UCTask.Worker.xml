@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UCTask.Worker</name>
+    </assembly>
+    <members>
+        <member name="T:UCTask.Worker.WorkerState">
+            <summary>
+            An enumeration that represents the different states of a worker.
+            </summary>
+        </member>
+        <member name="F:UCTask.Worker.WorkerState.Stopped">
+            <summary>
+            Indicates that the worker is in a 'Stopped' state.
+            </summary>
+        </member>
+        <member name="F:UCTask.Worker.WorkerState.Starting">
+            <summary>
+            Indicates that the worker is in a 'Starting' state. That is, the worker is busy starting.
+            </summary>
+        </member>
+        <member name="F:UCTask.Worker.WorkerState.Started">
+            <summary>
+            Indicates that the worker is in a 'Started' state.
+            </summary>
+        </member>
+        <member name="F:UCTask.Worker.WorkerState.Stopping">
+            <summary>
+            Indicates that the worker is in a 'Stopping' state. That is, the worker is busy stopping.
+            </summary>
+        </member>
+        <member name="T:UCTask.Worker.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:UCTask.Worker.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:UCTask.Worker.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:UCTask.Worker.WorkerBase">
+            <summary>
+            An abstract base class that provides basic thread, start and stop operations.
+            </summary>
+        </member>
+        <member name="P:UCTask.Worker.WorkerBase.WorkerState">
+            <summary>
+            Represents the state of the worker. <see cref="P:UCTask.Worker.WorkerBase.WorkerState"/>
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.StartWorker">
+            <summary>
+            Starts the worker.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.StopWorker">
+            <summary>
+            Stops the worker.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.OnRunStarting">
+            <summary>
+            Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunStarting"/> which is called at the beginning of a start operation. <see cref="M:UCTask.Worker.WorkerBase.StartWorker"/>
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.Cycle(System.Threading.CancellationToken)">
+            <summary>
+            When overrided in a derived class, this method is executed with each cycle of the worker.
+            </summary>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.OnRunEnding">
+            <summary>
+            Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunEnding"/> which is called at the beginning of a stop operation. <see cref="M:UCTask.Worker.WorkerBase.StopWorker"/>
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.AddDependent(UCTask.Worker.WorkerBase)">
+            <summary>
+            Adds a dependent worker which is subject to the start and stop operations of this worker.
+            </summary>
+            <param name="dependent">The worker which is to be added.</param>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.RemoveDependent(UCTask.Worker.WorkerBase)">
+            <summary>
+            Removes a dependent worker.
+            </summary>
+            <param name="dependent">The worker which is not to be removed.</param>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.Finalize">
+            <summary>
+            Default destructor.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerBase.Dispose(System.Boolean)">
+            <summary>
+            Releases the resources used by the component.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="T:UCTask.Worker.WorkerException">
+            <summary>
+            Represents errors that occur during usage of the <see cref="T:UCTask.Worker.WorkerBase"/>.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCTask.Worker.WorkerException"/> class.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCTask.Worker.WorkerException"/> class with a specified error message.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCTask.Worker.WorkerException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.WorkerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UCTask.Worker.WorkerException"/> class with serialized data.
+            </summary>
+        </member>
+    </members>
+</doc>
