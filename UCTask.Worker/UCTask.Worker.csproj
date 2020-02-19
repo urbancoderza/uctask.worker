@@ -19,8 +19,8 @@
 		<RepositoryUrl>https://github.com/Robotics1/uctask.worker</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<ApplicationIcon>UrbanCoder_Icon.ico</ApplicationIcon>
-		<AssemblyVersion>1.0.1.0</AssemblyVersion>
-		<FileVersion>1.0.1.0</FileVersion>
+		<AssemblyVersion>1.0.2.0</AssemblyVersion>
+		<FileVersion>1.0.2.0</FileVersion>
 		<PackageId>$(AssemblyName)</PackageId>
 		<PackageVersion>$(AssemblyVersion)</PackageVersion>
 		<Title>$(AssemblyName)</Title>
@@ -58,10 +58,6 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0" />
 	</ItemGroup>
 
 </Project>
