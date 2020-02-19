@@ -19,13 +19,15 @@
     <RepositoryUrl>https://github.com/Robotics1/uctask.worker</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <ApplicationIcon>UrbanCoder_Icon.ico</ApplicationIcon>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-    <DocumentationFile>C:\D\UTW\UCTask.Worker\UCTask.Worker.xml</DocumentationFile>
+    <DocumentationFile>Documentation\UCTask.Worker.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -48,13 +50,9 @@
       <PackagePath></PackagePath>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0"/>
+    <PackageReference Include="NuGet.Build.Tasks.Pack" Version="5.2.0" />
  </ItemGroup>
 
 </Project>
