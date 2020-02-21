@@ -19,11 +19,18 @@ namespace UCTask.Worker
 		private void Destroy(bool nativeOnly)
 		{
 			if (!nativeOnly)
-			{
+			{				
+				if (_workerTask != null)
+				{
+					if (_tokenSource != null)
+					{
+						_tokenSource.Cancel();
+					}
+					if (_workerTask.Wait(5))
+						_workerTask.Dispose();
+				}
 				if (_tokenSource != null)
 					_tokenSource.Dispose();
-				if (_workerTask != null)
-					_workerTask.Dispose();
 			}
 		}
 
