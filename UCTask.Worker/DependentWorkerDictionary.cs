@@ -90,5 +90,10 @@ namespace UCTask.Worker
 					worker.Stop();
 			}
 		}
+
+		/// <summary>
+		/// Gets a collection containing the keys in teh <see cref="DependentWorkerDictionary"/>.
+		/// </summary>
+		public IEnumerable<string> Keys => _workers.Keys;
 	}
 }
