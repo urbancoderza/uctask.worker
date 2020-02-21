@@ -90,7 +90,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// Implementing classes can override <see cref="OnRunStarting"/> which is called at the beginning of a start operation. <see cref="StartWorker"/>
 		/// </summary>
-		protected virtual void OnRunStarting() { }
+		protected virtual void OnRunStarting(CancellationToken cancellationToken) { }
 
 		/// <summary>
 		/// When overrided in a derived class, this method is executed with each cycle of the worker.
