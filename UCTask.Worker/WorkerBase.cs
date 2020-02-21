@@ -10,8 +10,6 @@ namespace UCTask.Worker
 	/// </summary>
 	public abstract partial class WorkerBase : IDisposable
 	{
-		private readonly object _dependentLocker = new object();
-		private readonly List<WorkerBase> _dependentWorkers = new List<WorkerBase>();
 		private Task _workerTask;
 		private readonly CancellationTokenSource _tokenSource = new CancellationTokenSource();
 		private readonly object _startStopLocker = new object();
@@ -24,7 +22,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// Starts the worker.
 		/// </summary>
-		public void StartWorker()
+		public void Start()
 		{
 			if (WorkerState != WorkerState.Stopped)
 				return;
@@ -40,7 +38,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// Stops the worker.
 		/// </summary>
-		public void StopWorker()
+		public void Stop()
 		{
 			if (WorkerState != WorkerState.Started)
 				return;
@@ -61,11 +59,8 @@ namespace UCTask.Worker
 			{
 				WorkerState = WorkerState.Starting;
 				OnRunStarting(cancellationToken);
-				lock (_dependentLocker)
-				{
-					foreach (var dep in _dependentWorkers)
-						dep.StartWorker();
-				}
+				DependentWorkers.StartAll();
+
 				WorkerState = WorkerState.Started;
 
 				while (WorkerState == WorkerState.Started)
@@ -77,18 +72,14 @@ namespace UCTask.Worker
 			finally
 			{
 				WorkerState = WorkerState.Stopping;
-				lock (_dependentLocker)
-				{
-					foreach (var dep in _dependentWorkers)
-						dep.StopWorker();
-				}
+				DependentWorkers.StopAll();
 				OnRunEnding();
 				WorkerState = WorkerState.Stopped;
 			}
 		}
 
 		/// <summary>
-		/// Implementing classes can override <see cref="OnRunStarting"/> which is called at the beginning of a start operation. <see cref="StartWorker"/>
+		/// Implementing classes can override <see cref="OnRunStarting"/> which is called at the beginning of a start operation. <see cref="Start"/>
 		/// </summary>
 		protected virtual void OnRunStarting(CancellationToken cancellationToken) { }
 
@@ -99,38 +90,13 @@ namespace UCTask.Worker
 		protected virtual void Cycle(CancellationToken cancellationToken) { }
 
 		/// <summary>
-		/// Implementing classes can override <see cref="OnRunEnding"/> which is called at the beginning of a stop operation. <see cref="StopWorker"/>
+		/// Implementing classes can override <see cref="OnRunEnding"/> which is called at the beginning of a stop operation. <see cref="Stop"/>
 		/// </summary>
 		protected virtual void OnRunEnding() { }
 
 		/// <summary>
-		/// Adds a dependent worker which is subject to the start and stop operations of this worker.
+		/// Gets the dependent worker dictionary.
 		/// </summary>
-		/// <param name="dependent">The worker which is to be added.</param>
-		protected void AddDependent(WorkerBase dependent)
-		{
-			if (dependent == null)
-				throw new ArgumentNullException(nameof(dependent));
-
-			lock (_dependentLocker)
-			{
-				_dependentWorkers.Add(dependent);
-			}
-		}
-
-		/// <summary>
-		/// Removes a dependent worker.
-		/// </summary>
-		/// <param name="dependent">The worker which is not to be removed.</param>
-		protected void RemoveDependent(WorkerBase dependent)
-		{
-			if (dependent == null)
-				throw new ArgumentNullException(nameof(dependent));
-
-			lock (_dependentLocker)
-			{
-				_dependentWorkers.Remove(dependent);
-			}
-		}
+		protected DependentWorkerDictionary DependentWorkers { get; } = new DependentWorkerDictionary();
 	}
 }

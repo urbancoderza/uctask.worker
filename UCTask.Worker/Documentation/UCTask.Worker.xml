@@ -4,6 +4,51 @@
         <name>UCTask.Worker</name>
     </assembly>
     <members>
+        <member name="T:UCTask.Worker.DependentWorkerDictionary">
+            <summary>
+            A class representing a dictionary for dependent workers. The keys of the disctionary is case-insensitive strings.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.DependentWorkerDictionary.Add(System.String,UCTask.Worker.WorkerBase)">
+            <summary>
+            Adds a dependent worker to the items collection.
+            </summary>
+            <param name="key">The unique case-insensitive key for the worker to be added.</param>
+            <param name="dependentWorker">The worker to add.</param>
+            <returns>A bool indicating whether the worker was added to the items collection or not.</returns>
+            <remarks>If the key already exists in the dictionary, the worker will not be added and the method will return false.</remarks>
+        </member>
+        <member name="M:UCTask.Worker.DependentWorkerDictionary.Remove(System.String)">
+            <summary>
+            Removes a worker from the items collection.
+            </summary>
+            <param name="key">The unique case-insensitive key for the worker to be removed.</param>
+            <returns>If the key was found in the dictionary, returns the worker that was removed, else returns null.</returns>
+        </member>
+        <member name="M:UCTask.Worker.DependentWorkerDictionary.ContainsKey(System.String)">
+            <summary>
+            Determines if the <see cref="T:UCTask.Worker.DependentWorkerDictionary"/> contains the specified key.
+            </summary>
+            <param name="key">The unique case-insensitive key for the worker to be searched.</param>
+            <returns>A bool indicating whether the key exists in the dictionary or not.</returns>
+        </member>
+        <member name="P:UCTask.Worker.DependentWorkerDictionary.Item(System.String)">
+            <summary>
+            Gets the value associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get.</param>
+            <returns>A <see cref="T:UCTask.Worker.WorkerBase"/> associated with the specified key.</returns>
+        </member>
+        <member name="M:UCTask.Worker.DependentWorkerDictionary.StartAll">
+            <summary>
+            Starts each of the dependent workers if it is not already started.
+            </summary>
+        </member>
+        <member name="M:UCTask.Worker.DependentWorkerDictionary.StopAll">
+            <summary>
+            Stops each of the dependent workers if it is not already started.
+            </summary>
+        </member>
         <member name="T:UCTask.Worker.WorkerState">
             <summary>
             An enumeration that represents the different states of a worker.
@@ -39,19 +84,19 @@
             Represents the state of the worker. <see cref="P:UCTask.Worker.WorkerBase.WorkerState"/>
             </summary>
         </member>
-        <member name="M:UCTask.Worker.WorkerBase.StartWorker">
+        <member name="M:UCTask.Worker.WorkerBase.Start">
             <summary>
             Starts the worker.
             </summary>
         </member>
-        <member name="M:UCTask.Worker.WorkerBase.StopWorker">
+        <member name="M:UCTask.Worker.WorkerBase.Stop">
             <summary>
             Stops the worker.
             </summary>
         </member>
         <member name="M:UCTask.Worker.WorkerBase.OnRunStarting(System.Threading.CancellationToken)">
             <summary>
-            Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunStarting(System.Threading.CancellationToken)"/> which is called at the beginning of a start operation. <see cref="M:UCTask.Worker.WorkerBase.StartWorker"/>
+            Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunStarting(System.Threading.CancellationToken)"/> which is called at the beginning of a start operation. <see cref="M:UCTask.Worker.WorkerBase.Start"/>
             </summary>
         </member>
         <member name="M:UCTask.Worker.WorkerBase.Cycle(System.Threading.CancellationToken)">
@@ -62,20 +107,13 @@
         </member>
         <member name="M:UCTask.Worker.WorkerBase.OnRunEnding">
             <summary>
-            Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunEnding"/> which is called at the beginning of a stop operation. <see cref="M:UCTask.Worker.WorkerBase.StopWorker"/>
+            Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunEnding"/> which is called at the beginning of a stop operation. <see cref="M:UCTask.Worker.WorkerBase.Stop"/>
             </summary>
         </member>
-        <member name="M:UCTask.Worker.WorkerBase.AddDependent(UCTask.Worker.WorkerBase)">
+        <member name="P:UCTask.Worker.WorkerBase.DependentWorkers">
             <summary>
-            Adds a dependent worker which is subject to the start and stop operations of this worker.
+            Gets the dependent worker dictionary.
             </summary>
-            <param name="dependent">The worker which is to be added.</param>
-        </member>
-        <member name="M:UCTask.Worker.WorkerBase.RemoveDependent(UCTask.Worker.WorkerBase)">
-            <summary>
-            Removes a dependent worker.
-            </summary>
-            <param name="dependent">The worker which is not to be removed.</param>
         </member>
         <member name="M:UCTask.Worker.WorkerBase.Dispose">
             <summary>
