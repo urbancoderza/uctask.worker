@@ -39,14 +39,9 @@
             <param name="key">The key of the value to get.</param>
             <returns>A <see cref="T:UCTask.Worker.WorkerBase"/> associated with the specified key.</returns>
         </member>
-        <member name="M:UCTask.Worker.DependentWorkerDictionary.StartAll">
+        <member name="P:UCTask.Worker.DependentWorkerDictionary.Keys">
             <summary>
-            Starts each of the dependent workers if it is not already started.
-            </summary>
-        </member>
-        <member name="M:UCTask.Worker.DependentWorkerDictionary.StopAll">
-            <summary>
-            Stops each of the dependent workers if it is not already started.
+            Gets a collection containing the keys in teh <see cref="T:UCTask.Worker.DependentWorkerDictionary"/>.
             </summary>
         </member>
         <member name="T:UCTask.Worker.WorkerState">

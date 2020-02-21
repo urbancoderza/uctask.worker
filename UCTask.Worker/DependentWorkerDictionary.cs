@@ -67,10 +67,7 @@ namespace UCTask.Worker
 		/// <returns>A <see cref="WorkerBase"/> associated with the specified key.</returns>
 		public WorkerBase this[string key] => _workers[key];
 
-		/// <summary>
-		/// Starts each of the dependent workers if it is not already started.
-		/// </summary>
-		public void StartAll()
+		internal void StartAll()
 		{
 			lock (_workers)
 			{
@@ -79,10 +76,7 @@ namespace UCTask.Worker
 			}
 		}
 
-		/// <summary>
-		/// Stops each of the dependent workers if it is not already started.
-		/// </summary>
-		public void StopAll()
+		internal void StopAll()
 		{
 			lock (_workers)
 			{
