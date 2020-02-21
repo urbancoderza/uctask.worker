@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Threading;
 
 namespace UCTask.Worker
 {
 	public abstract partial class WorkerBase
 	{
+		private int disposed;
+
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
 		/// </summary>
@@ -38,7 +41,8 @@ namespace UCTask.Worker
 		/// <param name="disposing"></param>
 		protected virtual void Dispose(bool disposing)
 		{
-			Destroy(!disposing);
+			if (Interlocked.CompareExchange(ref disposed, 1, 0) == 0)
+				Destroy(!disposing);
 		}
 	}
 }
