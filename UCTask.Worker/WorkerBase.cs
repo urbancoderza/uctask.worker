@@ -60,7 +60,7 @@ namespace UCTask.Worker
 			try
 			{
 				WorkerState = WorkerState.Starting;
-				OnRunStarting();
+				OnRunStarting(cancellationToken);
 				lock (_dependentLocker)
 				{
 					foreach (var dep in _dependentWorkers)
