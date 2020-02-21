@@ -24,7 +24,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// Starts the worker.
 		/// </summary>
-		protected void StartWorker()
+		public void StartWorker()
 		{
 			if (WorkerState != WorkerState.Stopped)
 				return;
@@ -40,7 +40,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// Stops the worker.
 		/// </summary>
-		protected void StopWorker()
+		public void StopWorker()
 		{
 			if (WorkerState != WorkerState.Started)
 				return;
@@ -95,7 +95,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// When overrided in a derived class, this method is executed with each cycle of the worker.
 		/// </summary>
-		/// <param name="cancellationToken"></param>
+		/// <param name="cancellationToken">The cancellation token that is used to cancel the task operation.</param>
 		protected virtual void Cycle(CancellationToken cancellationToken) { }
 
 		/// <summary>

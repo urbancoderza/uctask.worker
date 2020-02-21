@@ -58,7 +58,7 @@
             <summary>
             When overrided in a derived class, this method is executed with each cycle of the worker.
             </summary>
-            <param name="cancellationToken"></param>
+            <param name="cancellationToken">The cancellation token that is used to cancel the task operation.</param>
         </member>
         <member name="M:UCTask.Worker.WorkerBase.OnRunEnding">
             <summary>
