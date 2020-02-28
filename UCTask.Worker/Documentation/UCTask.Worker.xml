@@ -93,6 +93,7 @@
             <summary>
             Implementing classes can override <see cref="M:UCTask.Worker.WorkerBase.OnRunStarting(System.Threading.CancellationToken)"/> which is called at the beginning of a start operation. <see cref="M:UCTask.Worker.WorkerBase.Start"/>
             </summary>
+            <param name="cancellationToken">The cancellation token used for cancelling the task.</param>
         </member>
         <member name="M:UCTask.Worker.WorkerBase.Cycle(System.Threading.CancellationToken)">
             <summary>

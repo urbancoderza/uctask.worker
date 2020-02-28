@@ -8,23 +8,25 @@
 		<Company>Urban Robotics (Pty) Ltd</Company>
 		<Copyright>2020 Urban Robotics (Pty) Ltd</Copyright>
 		<SignAssembly>false</SignAssembly>
-		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>A helper package to simplify worker thread opration by abstracting the Start/Stop operations. Supports dependent workers.</Description>
-		<PackageProjectUrl>https://www.urbancoder.io/uctask/worker</PackageProjectUrl>
+		<PackageProjectUrl>https://www.urbancoder.io</PackageProjectUrl>
 		<PackageIcon>UrbanCoder_Icon.png</PackageIcon>
 		<PackageIconUrl />
-		<PackageReleaseNotes>1. Fixed various NuGet attributes.</PackageReleaseNotes>
+		<PackageReleaseNotes>* Fix various NuGet attributes.
+* Update license.
+* Fix IDisposable pattern.</PackageReleaseNotes>
 		<NeutralLanguage>en</NeutralLanguage>
 		<PackageTags>task thread worker stop start</PackageTags>
-		<RepositoryUrl>https://github.com/Robotics1/uctask.worker</RepositoryUrl>
+		<RepositoryUrl>https://github.com/urbancoderza/uctask.worker</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<ApplicationIcon>UrbanCoder_Icon.ico</ApplicationIcon>
-		<AssemblyVersion>1.2.2.0</AssemblyVersion>
-		<FileVersion>1.2.2.0</FileVersion>
+		<AssemblyVersion>1.2.3.0</AssemblyVersion>
+		<FileVersion>1.2.3.0</FileVersion>
 		<PackageId>$(AssemblyName)</PackageId>
 		<PackageVersion>$(AssemblyVersion)</PackageVersion>
 		<Title>$(AssemblyName)</Title>
-		<Version>1.2.2</Version>
+		<Version>1.2.3</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

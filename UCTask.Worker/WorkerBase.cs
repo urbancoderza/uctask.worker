@@ -81,6 +81,7 @@ namespace UCTask.Worker
 		/// <summary>
 		/// Implementing classes can override <see cref="OnRunStarting"/> which is called at the beginning of a start operation. <see cref="Start"/>
 		/// </summary>
+		/// <param name="cancellationToken">The cancellation token used for cancelling the task.</param>
 		protected virtual void OnRunStarting(CancellationToken cancellationToken) { }
 
 		/// <summary>

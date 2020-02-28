@@ -5,7 +5,7 @@ namespace UCTask.Worker
 {
 	public abstract partial class WorkerBase
 	{
-		private int disposed;
+		private int _disposed;
 
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -14,24 +14,6 @@ namespace UCTask.Worker
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
-		}
-
-		private void Destroy(bool nativeOnly)
-		{
-			if (!nativeOnly)
-			{				
-				if (_workerTask != null)
-				{
-					if (_tokenSource != null)
-					{
-						_tokenSource.Cancel();
-					}
-					if (_workerTask.Wait(5))
-						_workerTask.Dispose();
-				}
-				if (_tokenSource != null)
-					_tokenSource.Dispose();
-			}
 		}
 
 		/// <summary>
@@ -48,8 +30,21 @@ namespace UCTask.Worker
 		/// <param name="disposing"></param>
 		protected virtual void Dispose(bool disposing)
 		{
-			if (Interlocked.CompareExchange(ref disposed, 1, 0) == 0)
-				Destroy(!disposing);
+			if (disposing)
+			{
+				if (Interlocked.CompareExchange(ref _disposed, 1, 0) == 0)
+				{
+					Stop();
+
+					if (_workerTask != null)
+					{						
+						if (_workerTask.IsCompleted)
+							_workerTask.Dispose();
+					}
+					if (_tokenSource != null)
+						_tokenSource.Dispose();
+				}
+			}
 		}
 	}
 }
