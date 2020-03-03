@@ -1,2 +1,2 @@
-# uctask
-UCTask is a set of libraries that simplify the use of multiple threads and tasks in in .Net and .Net Core applications.
+# uctask.worker
+UCTask.Worker is a library hat simplify the use of multiple threads and tasks in in .Net and .Net Core applications.
