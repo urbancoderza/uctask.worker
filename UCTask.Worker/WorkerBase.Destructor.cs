@@ -37,7 +37,7 @@ namespace UCTask.Worker
 					Stop();
 
 					if (_workerTask != null)
-					{						
+					{
 						if (_workerTask.IsCompleted)
 							_workerTask.Dispose();
 					}

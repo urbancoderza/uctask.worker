@@ -43,7 +43,7 @@
 		<DefineConstants />
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<WarningsAsErrors />
-		<DocumentationFile>Documentation\UCTask.Worker.xml</DocumentationFile>
+		<DocumentationFile>..\Documentation\UCTask.Worker.xml</DocumentationFile>
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
@@ -61,6 +61,10 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Documentation\" />
 	</ItemGroup>
 
 </Project>
