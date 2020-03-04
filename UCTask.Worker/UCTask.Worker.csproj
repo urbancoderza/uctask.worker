@@ -10,7 +10,7 @@
 		<SignAssembly>false</SignAssembly>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>A helper package to simplify worker thread opration by abstracting the Start/Stop operations. Supports dependent workers.</Description>
-		<PackageProjectUrl>https://www.urbancoder.io</PackageProjectUrl>
+		<PackageProjectUrl>https://www.urbancoder.io/uctask-worker</PackageProjectUrl>
 		<PackageIcon>UrbanCoder_Icon.png</PackageIcon>
 		<PackageIconUrl />
 		<PackageReleaseNotes>* Fix various NuGet attributes.

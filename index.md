@@ -1,6 +1,14 @@
-# How to contribute
+# UCTask.Worker
+#### Description
+UCTask.Worker is a library that simplifies the use of multiple threads and tasks in in .Net and .Net Core applications.
 
-Please read these guidelines before contributing to thsi project:
+## Classes
+
+[WorkerBase][workerbaseclass] 
+
+
+
+Please read these guidelines before contributing to this project:
 
  - [Question or Problem?](#question)
  - [Issues and Bugs](#issue)
@@ -82,5 +90,5 @@ FOR A PARTICULAR PURPOSE.
 
 
 [github]: https://github.com/urbancoderza/uctask.worker
-[documentation]: https://github.com/urbancoderza/uctask.worker/tree/master/UCTask.Worker/Documentation
+[workerbaseclass]: ../WorkerBaseClass.md
 [pullrequesthelp]: https://help.github.com/articles/using-pull-requests

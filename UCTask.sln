@@ -5,8 +5,9 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTask.Worker", "UCTask.Worker\UCTask.Worker.csproj", "{A714E7F6-F25A-48E1-B742-A0ECB18F1C5B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{3C4B2F17-F9AD-4BC4-9EA0-33A7C10438A8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73278164-B3BA-4201-BCDE-11F17FF7B779}"
 	ProjectSection(SolutionItems) = preProject
+		index.md = index.md
 		README.md = README.md
 	EndProjectSection
 EndProject

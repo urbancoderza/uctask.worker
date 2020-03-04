@@ -14,7 +14,7 @@
 		/// </summary>
 		Starting = 1,
 		/// <summary>
-		/// Indicates that the worker is in a 'Started' state.
+		/// Indicates that the worker is in a 'Starting' state.
 		/// </summary>
 		Started = 2,
 		/// <summary>
