@@ -1,2 +1,2 @@
-# uct.worker
-A helper package to simplify worker thread opration by abstracting the Start/Stop operations. Supports dependent workers.
+# uctask.worker
+UCTask.Worker is a library hat simplifies the use of multiple threads and tasks in in .Net and .Net Core applications.
