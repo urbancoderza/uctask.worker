@@ -1,6 +1,6 @@
 # How to contribute
 
-Please read these guidelines before contributing to thsi project:
+Please read these guidelines before contributing to this project:
 
  - [Question or Problem?](#question)
  - [Issues and Bugs](#issue)
